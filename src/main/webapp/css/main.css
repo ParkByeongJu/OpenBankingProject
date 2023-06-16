@@ -1,0 +1,72 @@
+@charset "EUC-KR";
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+
+body{
+	
+	font-family: 'Urbanist', sans-serif;
+	overflow-x: hidden; 
+}
+
+a{
+	text-decoration: none;
+	color: currentColor;
+}
+
+a:hover{
+	color: currentColor;	
+}
+
+header{
+	width: 100vw;
+	height: 100px;
+	background-color: #fff;
+	box-shadow: 0px 3px 8px rgba(0, 0, 0, 25%);
+	display: flex;
+    align-items: center;
+}
+
+header .container-fluid{
+	width: 100%;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .navb-logo img{
+	display: flex;
+	align-content: center;
+	justify-content: flex-end;	
+}
+
+header .navb-items{
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    letter-spacing: 3px;
+}
+
+header .item{
+	text-align: center;
+    margin-inline: 15%;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: #102447;
+    padding: 5px 0;
+    transition: all .1s ease;
+    border-bottom: 0px solid #64d6f4;
+    border-top: 0px solid #64d6f4;
+    cursor: pointer;
+}
+
+header .item:hover {
+	border-bottom: 3px solid #64d6f4;
+	border-top: 3px solid #64d6f4;
+}
+
+header .item-button a{
+	background-color: #274d8a;
+	width: 150px;
+	height: 50px;
+}
