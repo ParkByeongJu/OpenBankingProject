@@ -12,12 +12,12 @@ public class HandlerMapping {
 
 	private Map<String, Controller> mappings;
 
-	public HandlerMapping() {
+	public HandlerMapping(String propLoc) {
 		mappings = new HashMap<>();
 		Properties prop = new Properties();
 		
 		try {
-			InputStream is = new FileInputStream("C:\\Users\\User\\eclipse-workspaceJSP\\BjBanking\\bean.properties");
+			InputStream is = new FileInputStream(propLoc);
 			prop.load(is);
 			
 			Set<Object> keys = prop.keySet();

@@ -15,7 +15,10 @@ public class DispatcherServlet extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		mappings = new HandlerMapping();
+		
+		String propLoc = config.getInitParameter("propLoc");
+		
+		mappings = new HandlerMapping(propLoc);
 	}
 
 	@Override
