@@ -33,7 +33,19 @@
 		    	</div>
 		    	
 		    	<div class="item">
-		    		<a href="#">case</a>
+		    		<a href="#">게시판</a>
+		    	</div>
+		    	
+		    	<div class="item">
+		    		<a href="#">문의하기</a>
+		    	</div>
+		    	
+		    	<div class="item">
+		    		<a href="#">로그인</a>
+		    	</div>
+		    	
+		    	<div class="item">
+		    		<a href="#">회원가입</a>
 		    	</div>
 		    </div>
 		</div>    

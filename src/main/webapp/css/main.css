@@ -1,10 +1,10 @@
 @charset "EUC-KR";
 
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap');
 
 body{
 	
-	font-family: 'Urbanist', sans-serif;
+	font-family: 'Noto Serif KR', serif;
 	overflow-x: hidden; 
 }
 
@@ -58,6 +58,7 @@ header .item{
     border-bottom: 0px solid #64d6f4;
     border-top: 0px solid #64d6f4;
     cursor: pointer;
+    
 }
 
 header .item:hover {
