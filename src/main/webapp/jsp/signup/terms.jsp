@@ -28,22 +28,22 @@
 		</h2>
 		<div class="form-container1">
 			<form action="#" method="post">
-				<div class="form-check">
-				  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					  <label class="form-check-label" for="flexCheckDefault">
+				<div class="form-check t1">
+				  <input class="form-check-input" type="checkbox" value="" id="term1">
+					  <label class="form-check-label" for="term1">
 					    <span>(필수)이용약관</span>
 					  </label>
 				</div>
-				<hr>
-				<div class="form-check">
-				  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					  <label class="form-check-label" for="flexCheckDefault">
+				<hr class="hr1">
+				<div class="form-check t2">
+				  <input class="form-check-input" type="checkbox" value="" id="term2">
+					  <label class="form-check-label" for="term2">
 					    <span>(필수)개인정보 수집 및 이용 동의</span>
 					  </label>
 				</div>
-				<div>
-					<input type="submit" value="가입하기" class="w-btn-dark" />
-				</div>
+				<div class="text-center mt-6"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
+			      <input type="submit" value="가입하기" class="btn btn-customs"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
+			    </div>
 			</form>
 		</div>
 	</section>
