@@ -8,7 +8,7 @@ public class LoginProcessController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 
-		request.setAttribute("msg", "ë¡œê·¸ì¸ì„±ê³µ");
+		request.setAttribute("msg", "·Î±×ÀÎ¼º°ø");
 		
 		return "redirect:" + request.getContextPath();
 		
