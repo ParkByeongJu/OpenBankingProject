@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import kr.ac.kopo.VO.MemberVO;
 import kr.ac.kopo.commom.JDBCUtil;
 
 public class MemberDAO {
@@ -12,51 +13,68 @@ public class MemberDAO {
 	private PreparedStatement stmt;
 	private ResultSet rs;
 	
-	private static String DUPLICATE_CHECK_ID = "Select MEMBER_ID from member";
-	private static String LOGIN = "Select PASSWO_PW from member where MEMBER_ID = ?";
+//	private static String DUPLICATE_CHECK_ID = "Select MEMBER_ID from member";
+	private static String LOGIN = "SELECT * FROM MEMBER where MEMBER_ID = ? AND PASSWO_PW = ?";
 	
-	public boolean duplicateCheckId(String id) {
-		String checkid = null;
-		try {
-			conn = JDBCUtil.getConnnection();
-			stmt = conn.prepareStatement(DUPLICATE_CHECK_ID);
-			rs = stmt.executeQuery(); {
-				while(rs.next()) {
-					checkid = rs.getString("id");
-					if(checkid.equals(id)) {
-						return true;
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCUtil.close(rs, stmt ,conn);
-		}
-		return false;
-	}
+//	public boolean duplicateCheckId(String id) {
+//		String checkid = null;
+//		try {
+//			conn = JDBCUtil.getConnnection();
+//			stmt = conn.prepareStatement(DUPLICATE_CHECK_ID);
+//			rs = stmt.executeQuery(); {
+//				while(rs.next()) {
+//					checkid = rs.getString("id");
+//					if(checkid.equals(id)) {
+//						return true;
+//					}
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCUtil.close(rs, stmt ,conn);
+//		}
+//		return false;
+//	}
 	
-	public int login(String id, String password) {
+	public MemberVO login(MemberVO vo) {
+		
+		MemberVO user = null;
 		
 		try {
 			conn = JDBCUtil.getConnnection();
+			
 			stmt = conn.prepareStatement(LOGIN);
-			stmt.setString(1, id);
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			
+			System.out.println("\ndao id : " + vo.getId());
+			System.out.println("dao pw : " + vo.getPassword());
+			
 			rs = stmt.executeQuery();
+			
 			if(rs.next()) {
-				if(rs.getString(1).equals(password)) {
-					return 1;//·Î±×ÀÎ ¼º°ø
-				}
+				user = new MemberVO();
+				user.setId(rs.getString("MEMBER_ID"));
+				user.setPassword(rs.getString("PASSWO_PW"));
+				user.setName(rs.getString("MEMBER_NM"));
+				user.setEmail(rs.getString("MEMBER_EM"));
+				user.setBirth(rs.getDate("MEMBER_BIR"));
+				user.setPhone(rs.getString("MEMBER_PH"));
+				user.setPost(rs.getInt("MEMBER_POST"));
+				user.setFullAddr(rs.getString("MEMBER_FULLADDR"));
+				user.setExtraAddr(rs.getString("MEMBER_EXTRAADDR"));
+				user.setRole(rs.getString("MEMBER_ROLE"));
 			} else {
-				return 0; //ºñ¹Ð¹øÈ£ ºÒÀÏÄ¡
+				System.out.println("user ê²€ìƒ‰ ì‹¤íŒ¨");
 			}
-			return -1;//¾ÆÀÌµð ¾øÀ½
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			JDBCUtil.close(stmt, conn);
+			JDBCUtil.close(rs, stmt, conn);
 		}
-		return -2;//DB¿À·ù
+		return user;
 	}
 }
 

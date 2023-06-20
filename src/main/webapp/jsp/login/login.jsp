@@ -47,7 +47,7 @@
 	
 	<section>
 		<div class="form-container">
-		<form action="#" method="post">
+		<form action="/BjBanking/loginProcess.do" method="post">
 			<div>
 				<label for="id" class="form-label"></label>
 				<input type="text" id="id" name="id" class="form-control" placeholder="¾Æ¾Æµð" />

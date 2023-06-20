@@ -8,12 +8,15 @@ import java.sql.Statement;
 public class JDBCUtil {
 	
 	public static Connection getConnnection() {
+		 System.out.println("데이터베이스에 연결하는 중...");
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			System.out.println("데이터베이스에 연결되었습니다.");
 			return DriverManager.getConnection(url, "hr", "hr");
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("데이터베이스 연결에 실패하였습니다.");
 		}
 		return null;
 	}

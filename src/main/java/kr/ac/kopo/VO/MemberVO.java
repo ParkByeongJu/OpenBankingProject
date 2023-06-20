@@ -15,22 +15,7 @@ public class MemberVO {
 	private String extraAddr;
 	private String role;
 	
-	
-	public MemberVO(String id, String password, String name, String email, Date birth, String phone, int post,
-			String fullAddr, String extraAddr, String role) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.email = email;
-		this.birth = birth;
-		this.phone = phone;
-		this.post = post;
-		this.fullAddr = fullAddr;
-		this.extraAddr = extraAddr;
-		this.role = role;
-	}
-	
+
 	public String getId() {
 		return id;
 	}
