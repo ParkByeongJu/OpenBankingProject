@@ -16,18 +16,18 @@
 	
 	<header>
 	<div class="container-fluid d-flex justify-content-center align-items-center logo">
-		    <div class="navb-logo">
-		    	<img alt="" src="/BjBanking/image/logo.png">
-		    </div>
-		</div>   
+	    <div class="navb-logo">
+	    	<img alt="" src="/BjBanking/image/logo.png">
+	    </div>
+	</div>   
 	</header>
 		
 	<section>
 		<h2>
-			<span class="tit">회원가입</span> 
+			<span class="tit">약관동의</span> 
 		</h2>
 		<div class="form-container1">
-			<form action="#" method="post">
+			<form action="signUp.do" method="post">
 				<div class="form-check t1">
 				  <input class="form-check-input" type="checkbox" value="" id="term1">
 					  <label class="form-check-label" for="term1">
@@ -42,7 +42,7 @@
 					  </label>
 				</div>
 				<div class="text-center mt-6"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
-			      <input type="submit" value="가입하기" class="btn btn-customs"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
+			      <input type="submit" value="가입하기" class="btn btn-customs" id="signupButton"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
 			    </div>
 			</form>
 		</div>
@@ -54,5 +54,18 @@
 	  </div>
 	</footer>
 	
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function() {
+		  document.getElementById("signupButton").addEventListener("click", function(event) {
+		    var term1_agree = document.getElementById("term1").checked;
+		    var term2_agree = document.getElementById("term2").checked;
+		    
+		    if (!term1_agree || !term2_agree) {
+		      event.preventDefault();
+		      alert("필수 약관 동의 항목을 선택해 주세요.");
+		    }
+		  });
+		});
+	</script>
 </body>
 </html>
