@@ -24,21 +24,26 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String uri = request.getRequestURI();
-		uri = uri.substring(request.getContextPath().length());
-		
-		Controller ctrl = mappings.getController(uri);
-		String callPage = ctrl.handleRequest(request, response);
-		
-		
-		if(callPage.startsWith("redirect:")) {
-			
-			response.sendRedirect(callPage.substring("redirect:".length()));
-		}else {
-			RequestDispatcher dispatcher =  request.getRequestDispatcher(callPage);
-			dispatcher.forward(request, response);
+		try {
+
+			String uri = request.getRequestURI();
+			System.out.println("uri : " + uri);
+			uri = uri.substring(request.getContextPath().length());
+			System.out.println("context : " + request.getContextPath());
+			System.out.println("uri : " + uri);
+
+			Controller ctrl = mappings.getController(uri);
+			System.out.println("ctrl : " + ctrl.getClass());
+
+			String callPage = ctrl.handleRequest(request, response);
+			System.out.println("callPage : " + callPage);
+			if (callPage != null) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(callPage);
+				dispatcher.forward(request, response);
+			}
+		} catch (Exception e) {
+			throw new IOException(e);
 		}
-		
 	}
 
 }

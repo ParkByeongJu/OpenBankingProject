@@ -206,7 +206,7 @@ section .hr1 {
     font-weight: 300;
     font-size: 20px;
     color: #333;
-    width: 400px;
+    width: 510px;
     height: 45px;
     line-height: 20px;
     padding: 14px 18px 14px 18px;
@@ -405,19 +405,6 @@ section input[type=text].border-type8{
     left: -10px;
 }
 
-section .idbutton{
-	position: absolute;
-    width: 100px;
-    height: 45px;
-    top: -80px;
-    left: 140px;
-    margin: auto 0;
-    border-radius: 3px;
-    background-color: #343a40;
-    border: 2px solid;
-    color: white;
-    font-size: 18px;
-}
 section .postbutton{
 	position: absolute;
     width: 130px;
@@ -446,18 +433,117 @@ section .postbutton{
     font-size: 18px;
 }
 
-.checkId{
-	width: 510px;
-	height: 30px;
-	position: absolute;
-	top: -17.5px;
-	left: -14px;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+section .okId{
+	color: green;
+	position:absolute;
+	top: -30px;
+	left: -360px;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
 }
+
+section .alreadyId{
+	position:absolute;
+	top: -30px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .okpw{
+	color: green;
+	position:absolute;
+	top: 50px;
+	left: -360px;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .alreadypw{
+	position:absolute;
+	top: 50px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .okpwre{
+	color: green;
+	position:absolute;
+	top: 130px;
+	left: -360px;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .alreadypwre{
+	position:absolute;
+	top: 130px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .oknm{
+	color: green;
+	position:absolute;
+	top: 210px;
+	left: -360px;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .alreadynm{
+	position:absolute;
+	top: 210px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .okem{
+	color: green;
+	position:absolute;
+	top: 290px;
+	left: -360px;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .alreadyem{
+	position:absolute;
+	top: 290px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+section .alreadybir{
+	position:absolute;
+	top: 370px;
+	left: -360px;
+	color: red;
+	width: 600px;
+	margin-inline: 100px;
+	display: none;
+}
+
+
 
 
 

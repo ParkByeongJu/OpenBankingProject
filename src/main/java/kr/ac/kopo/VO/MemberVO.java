@@ -1,6 +1,6 @@
 package kr.ac.kopo.VO;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MemberVO {
 	

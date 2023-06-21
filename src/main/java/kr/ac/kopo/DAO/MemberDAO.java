@@ -13,29 +13,30 @@ public class MemberDAO {
 	private PreparedStatement stmt;
 	private ResultSet rs;
 	
-//	private static String DUPLICATE_CHECK_ID = "Select MEMBER_ID from member";
+	private static String DUPLICATE_CHECK_ID = "Select MEMBER_ID from member";
 	private static String LOGIN = "SELECT * FROM MEMBER where MEMBER_ID = ? AND PASSWO_PW = ?";
+	private static String INSERT_MEMBER = "INSERT INTO MEMBER (MEMBER_ID, PASSWO_PW, MEMBER_NM, MEMBER_EM, MEMBER_BIR, MEMBER_PH, MEMBER_POST, MEMBER_FULLADDR, MEMBER_EXTRAADDR, MEMBER_ROLE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'user')";
 	
-//	public boolean duplicateCheckId(String id) {
-//		String checkid = null;
-//		try {
-//			conn = JDBCUtil.getConnnection();
-//			stmt = conn.prepareStatement(DUPLICATE_CHECK_ID);
-//			rs = stmt.executeQuery(); {
-//				while(rs.next()) {
-//					checkid = rs.getString("id");
-//					if(checkid.equals(id)) {
-//						return true;
-//					}
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			JDBCUtil.close(rs, stmt ,conn);
-//		}
-//		return false;
-//	}
+	public boolean duplicateCheckId(String id) {
+		String checkid = null;
+		try {
+			conn = JDBCUtil.getConnnection();
+			stmt = conn.prepareStatement(DUPLICATE_CHECK_ID);
+			rs = stmt.executeQuery(); {
+				while(rs.next()) {
+					checkid = rs.getString("MEMBER_ID");
+					if(checkid.equals(id)) {
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCUtil.close(rs, stmt ,conn);
+		}
+		return false;
+	}
 	
 	public MemberVO login(MemberVO vo) {
 		
@@ -65,18 +66,43 @@ public class MemberDAO {
 				user.setFullAddr(rs.getString("MEMBER_FULLADDR"));
 				user.setExtraAddr(rs.getString("MEMBER_EXTRAADDR"));
 				user.setRole(rs.getString("MEMBER_ROLE"));
-			} else {
-				System.out.println("user 검색 실패");
+				}
+			
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				JDBCUtil.close(rs, stmt, conn);
 			}
+			return user;
+		}
+	
+	public void signUp(MemberVO vo) {
+		
+		try {
+			
+			conn = JDBCUtil.getConnnection();
+			stmt = conn.prepareStatement(INSERT_MEMBER);
+			stmt.setString(1, vo.getId());
+			stmt.setString(2, vo.getPassword());
+			stmt.setString(3, vo.getName());
+			stmt.setString(4, vo.getEmail());
+			stmt.setDate(5, vo.getBirth());
+			stmt.setString(6, vo.getPhone());
+			stmt.setInt(7, vo.getPost());
+			stmt.setString(8, vo.getFullAddr());
+			stmt.setString(9, vo.getExtraAddr());
+			
+			stmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			JDBCUtil.close(rs, stmt, conn);
 		}
-		return user;
+		
 	}
+
 }
+
+
 
 	
 

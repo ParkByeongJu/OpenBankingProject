@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -14,39 +14,156 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script type="text/javascript">
-	
+
+		function checkId() {
+			var id = $('#id').val();
+			var idRegex = /^[a-zA-Z0-9]+$/;
+			console.log('duplicate check start...')
+			if (id.length > 0 && id.match(idRegex)) {
+	        $.ajax({
+	            url: '/BjBanking/duplicateCheckId.do',
+	            type: 'post',
+	            data: {id: id},
+	            success: function (response) {
+	                response = response.trim();
+	                if (response === "success") {
+	                    $('.okId').css("display", "inline-block");
+	                    $('.alreadyId').css("display", "none");
+	                } else if (response === "Duplicate") {
+	                    $('.okId').css("display", "none");
+	                    $('.alreadyId').css("display", "inline-block");
+	                } else {
+	                    $('.okId').css("display", "none");
+	                    $('.alreadyId').css("display", "none");
+	                }
+	            },
+	            error: function (request, error) {
+	                alert("에러");
+	            	}
+	        	});
+		    } else {
+		        $('.okId').css("display", "none");
+		        $('.alreadyId').css("display", "none");
+		    }
+		};
+		
+		// 비밀번호 유효성 검사
+		function checkPassword() {
+	        var password = document.getElementById("passwordsignUp").value;
+	        var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+	        if (password.match(passwordRegex)) {
+	        	$('.okpw').css("display", "inline-block");
+	            $('.alreadypw').css("display", "none");
+	        } else {
+	        	$('.okpw').css("display", "none");
+	            $('.alreadypw').css("display", "inline-block");
+	        }
+	    }
+		
+		// 비밀번호 확인
+	    function checkRePassword() {
+	        var password = document.getElementById("passwordsignUp").value;
+	        var repassword = document.getElementById("repasswordsignUp").value;
+	        if (password === repassword) {
+	        	$('.okpwre').css("display", "inline-block");
+	            $('.alreadypwre').css("display", "none");
+	        } else {
+	        	$('.okpwre').css("display", "none");
+	            $('.alreadypwre').css("display", "inline-block");
+	        }
+	    }
+		
+	 	// 이름 유효성 검사
+	    function checkName() {
+	        var name = document.getElementById("signUpname").value;
+	        var nameRegex = /^[가-힣a-zA-Z]+$/;
+	        if (name.match(nameRegex)) {
+	        	$('.oknm').css("display", "inline-block");
+	            $('.alreadynm').css("display", "none");
+	        } else {
+	        	$('.oknm').css("display", "none");
+	            $('.alreadynm').css("display", "inline-block");
+	        }
+	    }
+	 	
+	 	// 이메일 유효성 검사
+	    function checkEmail() {
+	        var email = document.getElementById("signUpEmail").value;
+	        var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	        if (email.match(emailRegex)) {
+	        	$('.okem').css("display", "inline-block");
+	            $('.alreadyem').css("display", "none");
+	        } else {
+	        	$('.okem').css("display", "none");
+	            $('.alreadyem').css("display", "inline-block");
+	        }
+	    }
+	 
+	 	// 생년월일 유효성 검사
+	    function checkBirth() {
+	        var birth = document.getElementById("signUpBirth").value;
+	        var birthRegex = /^\d{8}$/;
+	        if (birth.match(birthRegex)) {
+	        	$('.alreadybir').css("display", "none");
+	        } else {
+	        	$('.alreadybir').css("display", "inline-block");
+	        }
+	    }
+	 	
+	    function inputPhoneNumber(obj) {
+		    var number = obj.value.replace(/[^0-9]/g, "");
+		    var phone = "";
+		
+		    if( number.length < 1 ) {
+		        phone= "";
+		    }else if(number.length < 4) {
+		        return number;
+		    } else if(number.length < 7) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3);
+		    } else if(number.length < 11) {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 3);
+		        phone += "-";
+		        phone += number.substr(6);
+		    } else {
+		        phone += number.substr(0, 3);
+		        phone += "-";
+		        phone += number.substr(3, 4);
+		        phone += "-";
+		        phone += number.substr(7);
+		    }
+		    obj.value = phone;
+		}
+	    
+	    function validateForm() {
+	        var isValid = true; // 기본적으로 true로 설정
+	        
+	        // 각 필드의 유효성 검사를 수행하고, 유효하지 않을 경우 isValid 값을 false로 설정
+	        if (!checkId()) {
+	            isValid = false;
+	        }
+	        if (!checkPassword()) {
+	            isValid = false;
+	        }
+	        if (!checkrePassword()) {
+	            isValid = false;
+	        }
+	        if (!checkEmail()) {
+	            isValid = false;
+	        }
+	        if (!inputPhoneNumber()) {
+	            isValid = false;
+	        }
+	        
+	        return isValid; // isValid 값을 반환
+	    }
+	    
 </script>
 
 </head>
-<script type="text/javascript">
-	function inputPhoneNumber(obj) {
-	    var number = obj.value.replace(/[^0-9]/g, "");
-	    var phone = "";
-	
-	    if( number.length < 1 ) {
-	        phone= "";
-	    }else if(number.length < 4) {
-	        return number;
-	    } else if(number.length < 7) {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3);
-	    } else if(number.length < 11) {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3, 3);
-	        phone += "-";
-	        phone += number.substr(6);
-	    } else {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3, 4);
-	        phone += "-";
-	        phone += number.substr(7);
-	    }
-	    obj.value = phone;
-	}
-</script>
 <body class="d-flex flex-column min-vh-100">
 	<header>
 		<div class="container-fluid d-flex justify-content-center align-items-center logo">
@@ -58,47 +175,55 @@
 	
 	<section class="flex-grow-1" style="height: 100%;">
 		<h2>
-			<span class="tit">ȸ������</span> 
+			<span class="tit">회원가입</span> 
 		</h2>
 	
 		<div class="form-container box_form_split">
-			<form action="#" method="post">
+			<form action="/BjBanking/signUpProcess.do" method="post">
 				<div class="signUpid">
-					<input type="text" id="id" placeholder="���̵�" class="border-type1">
-					<button type="button" class="idbutton">�ߺ�Ȯ��</button>
-					<div class="checkId alert alert-danger">���̵� �ߺ��Դϴ�.</div>
+					<input type="text" id="id" name="id" placeholder="아이디" class="border-type1" oninput = "checkId()">
+					<div class="okId">사용가능한 아이디 입니다.</div>
+					<div class="alreadyId">중복된 아이디 입니다. 다른 아이디를 입력해주세요.</div>
 				</div>
 				<div>
-					<input type="password" id="passwordsignUp" placeholder="��й�ȣ" class="border-type1">
+					<input type="password" id="passwordsignUp" name="password" placeholder="비밀번호" class="border-type1" oninput = "checkPassword()" >
+					<div class="okpw">사용가능한 비밀번호 입니다.</div>
+					<div class="alreadypw">알맞지 않은 비밀번호 입니다. 다른 비밀번호를 입력해주세요.</div>
 				</div>
 				<div>
-					<input type="password" id="repasswordsignUp" placeholder="��й�ȣ ���Է�" class="border-type11">
+					<input type="password" id="repasswordsignUp" name="repassword" placeholder="비밀번호 확인" class="border-type11" oninput = "checkRePassword()">
+					<div class="okpwre">비밀번호가 일치합니다.</div>
+					<div class="alreadypwre">비밀번호가 일치하지 않습니다.</div>
 				</div>
 				<div class="signUpName">
-					<input type="text" id="signUpname" placeholder="�̸�" class="border-type2">
+					<input type="text" id="signUpname" name="name" placeholder="이름" class="border-type2" oninput = "checkName()">
+					<div class="alreadynm">정상적이지 않은 이름입니다. 이름을 확인해주세요.</div>
 				</div>
 
 				<div class="signUpEmail">
-					<input type="text" id="signUpEmail" placeholder="�̸���" class="border-type3">
+					<input type="text" id="signUpEmail" name="email" placeholder="이메일" class="border-type3" oninput = "checkEmail()">
+					<div class="okem">사용가능한 이메일 입니다.</div>
+					<div class="alreadyem">사용불가능한 이메일 입니다. 다른 이메일을 입력해주세요.</div>
 				</div>
 
 				<div class="signUpBirth">
-					<input type="text" id="signUpBirth" placeholder="�������(ex.19940827)" class="border-type4">
+					<input type="text" id="signUpBirth" name="birth" placeholder="생년월일(ex.19940827)" class="border-type4" oninput = "checkBirth()" maxlength = "8">
+					<div class="alreadybir">비정상적인 생년월일 입니다. 생년월일을 확인 해주세요.</div>
 				</div>
 
 				<div class="signUpPhone">
-					<input type="text" id="signUpPhone" placeholder="�޴��� ��ȣ" class="border-type5" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="13" onkeyup="inputPhoneNumber(this)">
+					<input type="text" id="signUpPhone" name="phone" placeholder="휴대폰 번호" class="border-type5" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="13" onkeyup="inputPhoneNumber(this)">
 				</div>
 
 				<div class="signUpAddr">
 					<input type="text" name="post" maxlength="5" readonly class="border-type6" id="post">
-					<input type="button" value="������ȣ �˻�" id="postBtn" class="postbutton">
+					<input type="button" value="우편번호 검색" id="postBtn" class="postbutton">
 					<input type="text" name="addr1" readonly class="border-type7" id="addr1">
-					<input type="text" name="addr2" placeholder="���ּ�" class="border-type8" id="addr2">
+					<input type="text" name="addr2" placeholder="상세주소" class="border-type8" id="addr2">
 				</div>
 				
-				<div class="text-center"> <!-- ��ġ ������ ���� text-center Ŭ���� �߰� -->
-			      <input type="submit" value="�����ϱ�" class="btn btn-customs" id="signupButton2"> <!-- ��ư ������ �����ϱ� ���� Ŭ������ btn btn-primary�� ���� -->
+				<div class="text-center"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
+			      <input type="submit" value="가입하기" class="btn btn-customs" id="signupButton2"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
 			    </div>
 			</form>
 			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

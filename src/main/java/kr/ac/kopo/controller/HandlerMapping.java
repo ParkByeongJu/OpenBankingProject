@@ -1,12 +1,7 @@
 package kr.ac.kopo.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
 
 public class HandlerMapping {
 
@@ -14,27 +9,15 @@ public class HandlerMapping {
 
 	public HandlerMapping(String propLoc) {
 		mappings = new HashMap<>();
-		Properties prop = new Properties();
 		
-		try {
-			InputStream is = new FileInputStream(propLoc);
-			prop.load(is);
-			
-			Set<Object> keys = prop.keySet();
-			for(Object key : keys) {
-				String className = prop.getProperty(key.toString());
-//				System.out.println(key + " : " + className);
-				
-				Class<?> clz = Class.forName(className);
-				Constructor<?> consturctor =  clz.getConstructor();
-				consturctor.newInstance();
-				
-				mappings.put(key.toString(), (Controller)consturctor.newInstance());
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		mappings.put("/index.do", new IndexController());
+		mappings.put("/login.do", new LoginController());
+		mappings.put("/loginProcess.do", new LoginProcessController());
+		mappings.put("/loginout.do", new LogoutController());
+		mappings.put("/terms.do", new TermsController());
+		mappings.put("/signUp.do", new SignUpController());
+		mappings.put("/signUpProcess.do", new SignUpProcessController());
+		mappings.put("/duplicateCheckId.do", new DuplicateCheckIdController());
 	}
 	
 	public Controller getController(String uri) {
@@ -42,19 +25,6 @@ public class HandlerMapping {
 		return mappings.get(uri);
 		
 	}
-	
-	
-	/*
-	public static void main(String[] args) throws Exception {
-//		java.util.Random r = new java.util.Random();
-//		System.out.println(r.nextInt());
-		
-		Class<?> clz = Class.forName("java.util.Random");
-		Constructor<?> constructor = clz.getConstructor();
-		Object obj = constructor.newInstance();
-		System.out.println("난수 : " + ((java.util.Random)obj).nextInt());
-	}
-	 */	
 	
 }
 
