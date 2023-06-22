@@ -29,9 +29,9 @@ public class LoginProcessController implements Controller {
 			return "/index.jsp";
 		} else if (id != null && password != null) {
 			request.setAttribute("error", "아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요.");
-			return "/login.jsp";
+			return "/jsp/login/login.jsp";
 		} else {
-			return "/login.jsp";
+			return "/jsp/login/login.jsp";
 		}
 	}
 

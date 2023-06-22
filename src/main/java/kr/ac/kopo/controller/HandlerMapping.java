@@ -13,11 +13,13 @@ public class HandlerMapping {
 		mappings.put("/index.do", new IndexController());
 		mappings.put("/login.do", new LoginController());
 		mappings.put("/loginProcess.do", new LoginProcessController());
-		mappings.put("/loginout.do", new LogoutController());
+		mappings.put("/logout.do", new LogoutController());
 		mappings.put("/terms.do", new TermsController());
 		mappings.put("/signUp.do", new SignUpController());
 		mappings.put("/signUpProcess.do", new SignUpProcessController());
 		mappings.put("/duplicateCheckId.do", new DuplicateCheckIdController());
+		mappings.put("/insertAccountTerms.do", new InsertAccountTermsController());
+		mappings.put("/insertAccount.do", new InsertAccountController());
 	}
 	
 	public Controller getController(String uri) {
