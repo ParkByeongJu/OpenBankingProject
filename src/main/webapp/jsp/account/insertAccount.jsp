@@ -11,6 +11,33 @@
 <title>BjBanking : InsertAccount</title>
 <link rel="stylesheet" href="/BjBanking/css/main.css">
 <link rel="stylesheet" href="/BjBanking/fontawesome/css/all.css">
+
+<script type="text/javascript">
+	function checkPassword() {
+	    var password = document.getElementById("acpw").value;
+	    var regex = /^[0-9]+$/; // 숫자로만 구성되는지 확인하는 정규식
+	
+	    if (!regex.test(password)) {
+	    	$('.okacpw').css("display", "none");
+            $('.erroracpw').css("display", "inline-block");
+        } else {
+        	$('.okacpw').css("display", "inline-block");
+            $('.erroracpw').css("display", "none");
+        }
+	  }	
+	
+	function checkRePassword(){
+		var password = document.getElementById("acpw").value;
+        var repassword = document.getElementById("acrepw").value;
+        if (password === repassword) {
+        	$('.okreacpw').css("display", "inline-block");
+            $('.errorreacpw').css("display", "none");
+        } else {
+        	$('.okreacpw').css("display", "none");
+            $('.errorreacpw').css("display", "inline-block");
+        }
+	}
+</script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 	<header>
@@ -90,15 +117,23 @@
 		</h2>
 	
 		<div class="form-container">
-			<form action="/BjBanking/signUpProcess.do" method="post">
+			<form action="/BjBanking/insertAccountProcess.do" method="post">
 				<div id="acid">
 					${loginUser.id}
 				</div>
 				<div>
-					<input type="password" id="acpw" name="password" placeholder="계좌 비밀번호 4자리 입력" class="ac-border-type1">
+					<input type="password" id="acpw" name="password" placeholder="계좌 비밀번호 숫자 4자리 입력" class="ac-border-type1" oninput="checkPassword()">
+					<div class="erroracpw">숫자로만 입력해주세요!</div>
+					<div class=okacpw>사용가능한 비밀번호 입니다.</div>
+				</div>
+
+				<div>
+					<input type="password" id="acrepw" name="password" placeholder="계좌 비밀번호 4자리 재입력" class="ac-border-type2" oninput="checkRePassword()">
+					<div class="errorreacpw">비밀번호가 일치하지 않습니다.</div>
+					<div class=okreacpw>비밀번호가 일치합니다.</div>
 				</div>
 				<div>
-					<input type="text" id="acnm" name="name" placeholder="계좌별칭을 입력" class="ac-border-type2">
+					<input type="text" id="acnm" name="name" placeholder="계좌별칭을 입력" class="ac-border-type3">
 				</div>
 				<div class="text-center"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
 			      <input type="submit" value="가입하기" class="btn btn-customs" id="accountButton3"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
