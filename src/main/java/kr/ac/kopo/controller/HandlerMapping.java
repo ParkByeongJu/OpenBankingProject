@@ -20,6 +20,10 @@ public class HandlerMapping {
 		mappings.put("/duplicateCheckId.do", new DuplicateCheckIdController());
 		mappings.put("/insertAccountTerms.do", new InsertAccountTermsController());
 		mappings.put("/insertAccount.do", new InsertAccountController());
+		mappings.put("/insertAccountProcess.do", new InsertAccountProcessController());
+		mappings.put("/getProduct.do", new GetProductController());
+		mappings.put("/ProductProcess.do", new ProductProcessController());
+		mappings.put("/createAccount.do", new CreateAccountController());
 	}
 	
 	public Controller getController(String uri) {

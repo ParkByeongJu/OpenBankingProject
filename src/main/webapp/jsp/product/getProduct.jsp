@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,14 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<title>BjBanking : InsertAccount</title>
+<title>BjBanking : 상품조회</title>
 <link rel="stylesheet" href="/BjBanking/css/main.css">
 <link rel="stylesheet" href="/BjBanking/fontawesome/css/all.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
+
 	<header>
-		<div class="container-fluid">
+	<div class="container-fluid">
 		    
 		    <div class="navb-logo">
 		    	<img alt="" src="/BjBanking/image/logo.png">
@@ -83,60 +84,37 @@
 		    </div>
 		</div>
 	</header>
-	
 	<section>
-		<h2>
-			<span class="tit1">계좌개설 약관동의</span> 
-		</h2>
-		<div class="form-container1">
-			<form action="insertAccount.do" method="post">
-			<input type="hidden" class="form-control " name="productCode" value = "${param.productCode }">
-				<div class="form-check t1">
-				  <input class="form-check-input" type="checkbox" value="" id="term1">
-					  <label class="form-check-label" for="term1">
-					    <span>(필수)상품 이용약관</span>
-					  </label>
-				</div>
-				<hr class="hr1">
-				<div class="form-check t2">
-				  <input class="form-check-input" type="checkbox" value="" id="term2">
-					  <label class="form-check-label" for="term2">
-					    <span>(필수)불법·탈법 차명거래 금지 설명 확인</span>
-					  </label>
-				</div>
-				<hr class="hr2">
-				<div class="form-check t3">
-				  <input class="form-check-input" type="checkbox" value="" id="term3">
-					  <label class="form-check-label" for="term3">
-					    <span>(필수)예금자보호법 설명 확인</span>
-					  </label>
-				</div>
-				<div class="text-center mt-6"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
-			      <input type="submit" value="가입하기" class="btn btn-customs" id="signupButton"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
-			    </div>
-			</form>
-		</div>
-	</section>
 	
+		<h2>
+			<span class="tit2">온라인 상품</span> 
+		</h2>
+		<div class="container">
+					<div class="row">
+						<c:forEach var = "product" items = "${ productList }">
+						<div class="col">
+						    <div class="card">
+						      <img src="/BjBanking/image/product.png" class="card-img-top">
+						      <div class="card-body">
+							       <div class="text-center">
+							        <h3 class="card-title">${product.productName }</h3>
+							        <hr>
+							        <p class="card-text">${product.productContent}</p>
+							        <hr>
+							        <a href="/BjBanking/createAccount.do?productCode=${product.productcd }" class="btn btn-secondary">가입하러 가기</a>
+							      </div>
+						      </div>
+					    </div>
+				    </div>
+		    		</c:forEach>
+		        </div>
+			</div>
+	</section>
 	<footer class="py-3 mt-auto bg-dark text-light">
 		<div class="text-center p-3">
 	    	&copy; 2023 BjBank. All rights reserved.
 	 	</div>
 	</footer>
-	
-	<script type="text/javascript">
-		document.addEventListener("DOMContentLoaded", function() {
-		  document.getElementById("signupButton").addEventListener("click", function(event) {
-		    var term1_agree = document.getElementById("term1").checked;
-		    var term2_agree = document.getElementById("term2").checked;
-		    
-		    if (!term1_agree || !term2_agree) {
-		      event.preventDefault();
-		      alert("필수 약관 및 설명 동의 항목을 선택해 주세요.");
-		    }
-		  });
-		});
-	</script>
-	
+
 </body>
 </html>

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import javax.servlet.jsp.tagext.TryCatchFinally;
+
 import kr.ac.kopo.VO.MemberVO;
 import kr.ac.kopo.commom.JDBCUtil;
 
@@ -96,6 +98,8 @@ public class MemberDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(stmt, conn);
 		}
 		
 	}

@@ -692,5 +692,17 @@ section input[type=text].ac-border-type3{
 	display: none;
 }
 
+section h2 .tit2{
+	display: inline-block;
+    font-family: 'Noto Sans KR';
+    font-weight: 600;
+    font-size: 50px;
+    color: #333;
+    font-style: normal;
+    line-height: 1.2;
+    position: absolute;
+    left: 760px;
+    top: 150px;
+}
 
 

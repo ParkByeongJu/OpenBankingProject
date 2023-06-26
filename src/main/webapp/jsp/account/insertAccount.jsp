@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	function checkPassword() {
 	    var password = document.getElementById("acpw").value;
-	    var regex = /^[0-9]+$/; // ���ڷθ� �����Ǵ��� Ȯ���ϴ� ���Խ�
+	    var regex = /^[0-9]+$/; // 숫자로만 구성되는지 확인하는 정규식
 	
 	    if (!regex.test(password)) {
 	    	$('.okacpw').css("display", "none");
@@ -50,49 +50,49 @@
 		    <div class="navb-items d-none d-xl-flex">
 		    	
 		    	<div class="item dropdown">
-		    		<a class="dropdown" href="#" role="button" id="bankIntroductionDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">���� �Ұ�</a>
+		    		<a class="dropdown" href="#" role="button" id="bankIntroductionDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">은행 소개</a>
 		    		<ul class="dropdown-menu" aria-labelledby="bankIntroductionDropdown">
-		    			<li><a class="dropdown-item mt-3 mb-3" href="#">�λ縻</a></li>
-		    			<li><a class="dropdown-item mb-3" href="#">���� �Ұ�</a></li>
-		    			<li><a class="dropdown-item mb-3" href="#">ã�ƿ��ô� ��</a></li>
+		    			<li><a class="dropdown-item mt-3 mb-3" href="#">인사말</a></li>
+		    			<li><a class="dropdown-item mb-3" href="#">은행 소개</a></li>
+		    			<li><a class="dropdown-item mb-3" href="#">찾아오시는 길</a></li>
 		    		</ul>
 		    	</div>
 		    	
 		    	<div class="item dropdown">
-		    		<a class="dropdown" href="#" role="button" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">����</a>
+		    		<a class="dropdown" href="#" role="button" id="servicesDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">서비스</a>
 		    		<ul class="dropdown-menu" aria-labelledby="servicesDropdown">
 		    			<c:choose>
 		    				<c:when test="${empty loginUser}">
-				    			<li><a class="dropdown-item mt-3 mb-3" href="#">��ǰ ã��</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">���� ����</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">���� ��ȸ</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">���� ��ü</a></li>
+				    			<li><a class="dropdown-item mt-3 mb-3" href="#">상품 찾기</a></li>
+				    			<li><a class="dropdown-item mb-3" href="#">계좌 개설</a></li>
+				    			<li><a class="dropdown-item mb-3" href="#">계좌 조회</a></li>
+				    			<li><a class="dropdown-item mb-3" href="#">계좌 이체</a></li>
 			    			</c:when>
 			    			<c:otherwise>
-			    				<li><a class="dropdown-item mt-3 mb-3" href="#">��ǰ ã��</a></li>
-				    			<li><a class="dropdown-item mb-3" href="/BjBanking/insertAccountTerms.do">���� ����</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">���� ��ȸ</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">���� ��ü</a></li>
+			    				<li><a class="dropdown-item mt-3 mb-3" href="#">상품 찾기</a></li>
+				    			<li><a class="dropdown-item mb-3" href="/BjBanking/insertAccountTerms.do">계좌 개설</a></li>
+				    			<li><a class="dropdown-item mb-3" href="#">계좌 조회</a></li>
+				    			<li><a class="dropdown-item mb-3" href="#">계좌 이체</a></li>
 			    			</c:otherwise>
 		    			</c:choose>
 		    		</ul>
 		    	</div>
 		    	
 		    	<div class="item dropdown">
-		    		<a class="dropdown" href="#" role="button" id="boardDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">�Խ���</a>
+		    		<a class="dropdown" href="#" role="button" id="boardDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="-2,35">게시판</a>
 		    		<ul class="dropdown-menu" aria-labelledby="boardDropdown">
-		    			<li><a class="dropdown-item mt-3 mb-3" href="#">�����Խ���</a></li>
-		    			<li><a class="dropdown-item mb-3" href="#">���ǰԽ���</a></li>
+		    			<li><a class="dropdown-item mt-3 mb-3" href="#">자유게시판</a></li>
+		    			<li><a class="dropdown-item mb-3" href="#">문의게시판</a></li>
 		    		</ul>
 		    	</div>
 		    	
 		    	<div class="item">
 		    		<c:choose>
 			    		<c:when test="${empty loginUser}">
-			    			<a href="/BjBanking/login.do">�α���</a>
+			    			<a href="/BjBanking/login.do">로그인</a>
 			    		</c:when>
 			    		<c:otherwise>
-			    			<div>${loginUser.name}��</div>
+			    			<div>${loginUser.name}님</div>
 			    		</c:otherwise>
 		    		</c:choose>
 		    	</div>
@@ -100,10 +100,10 @@
 		    	<div class="item">
 		    		<c:choose>
 			    		<c:when test="${empty loginUser}">
-			    			<a href="#">ȸ������</a>
+			    			<a href="#">회원가입</a>
 			    		</c:when>
 			    		<c:otherwise>
-			    			<a href="/BjBanking/logout.do">�α׾ƿ�</a>
+			    			<a href="/BjBanking/logout.do">로그아웃</a>
 			    		</c:otherwise>
 		    		</c:choose>
 		    	</div>
@@ -113,7 +113,7 @@
 	
 	<section>
 		<h2>
-			<span class="tit">���� ����</span> 
+			<span class="tit">계좌 개설 </span> 
 		</h2>
 	
 		<div class="form-container">
@@ -121,22 +121,23 @@
 				<div id="acid">
 					${loginUser.id}
 				</div>
+				<input type="hidden" class="form-control " name="productCode" value = "${param.productCode }">
 				<div>
-					<input type="password" id="acpw" name="password" placeholder="���� ��й�ȣ ���� 4�ڸ� �Է�" class="ac-border-type1" oninput="checkPassword()">
-					<div class="erroracpw">���ڷθ� �Է����ּ���!</div>
-					<div class=okacpw>��밡���� ��й�ȣ �Դϴ�.</div>
+					<input type="password" id="acpw" name="password" placeholder="계좌 비밀번호 숫자 4자리 입력" class="ac-border-type1" oninput="checkPassword()">
+					<div class="erroracpw">숫자로만 입력해주세요!</div>
+					<div class=okacpw>사용가능한 비밀번호 입니다.</div>
 				</div>
 
 				<div>
-					<input type="password" id="acrepw" name="password" placeholder="���� ��й�ȣ 4�ڸ� ���Է�" class="ac-border-type2" oninput="checkRePassword()">
-					<div class="errorreacpw">��й�ȣ�� ��ġ���� �ʽ��ϴ�.</div>
-					<div class=okreacpw>��й�ȣ�� ��ġ�մϴ�.</div>
+					<input type="password" id="acrepw" name="repassword" placeholder="계좌 비밀번호 4자리 재입력" class="ac-border-type2" oninput="checkRePassword()">
+					<div class="errorreacpw">비밀번호가 일치하지 않습니다.</div>
+					<div class=okreacpw>비밀번호가 일치합니다.</div>
 				</div>
 				<div>
-					<input type="text" id="acnm" name="name" placeholder="���º�Ī�� �Է�" class="ac-border-type3">
+					<input type="text" id="acnm" name="name" placeholder="계좌별칭을 입력" class="ac-border-type3">
 				</div>
-				<div class="text-center"> <!-- ��ġ ������ ���� text-center Ŭ���� �߰� -->
-			      <input type="submit" value="�����ϱ�" class="btn btn-customs" id="accountButton3"> <!-- ��ư ������ �����ϱ� ���� Ŭ������ btn btn-primary�� ���� -->
+				<div class="text-center"> <!-- 위치 조정을 위해 text-center 클래스 추가 -->
+			      <input type="submit" value="가입하기" class="btn btn-customs" id="accountButton3"> <!-- 버튼 색상을 변경하기 위해 클래스를 btn btn-primary로 수정 -->
 			    </div>
 			</form>
 			
