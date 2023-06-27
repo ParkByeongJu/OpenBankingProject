@@ -38,14 +38,12 @@
 		    			<c:choose>
 		    				<c:when test="${empty loginUser}">
 				    			<li><a class="dropdown-item mt-3 mb-3" href="#">상품 찾기</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">계좌 개설</a></li>
 				    			<li><a class="dropdown-item mb-3" href="#">계좌 조회</a></li>
 				    			<li><a class="dropdown-item mb-3" href="#">계좌 이체</a></li>
 			    			</c:when>
 			    			<c:otherwise>
 			    				<li><a class="dropdown-item mt-3 mb-3" href="/BjBanking/ProductProcess.do">상품 찾기</a></li>
-				    			<li><a class="dropdown-item mb-3" href="/BjBanking/insertAccountTerms.do">계좌 개설</a></li>
-				    			<li><a class="dropdown-item mb-3" href="#">계좌 조회</a></li>
+				    			<li><a class="dropdown-item mb-3" href="/BjBanking/accountCheck.do">계좌 조회</a></li>
 				    			<li><a class="dropdown-item mb-3" href="#">계좌 이체</a></li>
 			    			</c:otherwise>
 		    			</c:choose>

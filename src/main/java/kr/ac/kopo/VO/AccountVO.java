@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class AccountVO {
 	
-	private int accountId;
+	private long accountId;
 	private int bankId;
-	private int blance;
+	private long blance;
 	private Date accountDate;
 	private int accountPassword;
 	private String id;
@@ -14,11 +14,14 @@ public class AccountVO {
 	private int passwordCount;
 	private int dormantAccount;
 	private String accountName;
+	private String bankName;
+	private String productName;
 	
-	public int getAccountId() {
+	
+	public long getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(int accountId) {
+	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 	}
 	public int getBankId() {
@@ -27,10 +30,10 @@ public class AccountVO {
 	public void setBankId(int bankId) {
 		this.bankId = bankId;
 	}
-	public int getBlance() {
+	public long getBlance() {
 		return blance;
 	}
-	public void setBlance(int blance) {
+	public void setBlance(long blance) {
 		this.blance = blance;
 	}
 	public Date getAccountDate() {
@@ -76,7 +79,18 @@ public class AccountVO {
 		this.accountName = accountName;
 	}
 	
-	
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	
 
 }

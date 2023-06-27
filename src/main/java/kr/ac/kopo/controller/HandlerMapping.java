@@ -24,6 +24,8 @@ public class HandlerMapping {
 		mappings.put("/getProduct.do", new GetProductController());
 		mappings.put("/ProductProcess.do", new ProductProcessController());
 		mappings.put("/createAccount.do", new CreateAccountController());
+		mappings.put("/accountCheck.do", new AccountCheckController());
+//		mappings.put("/accountCheckProcess.do", new AccountCheckProcessController());
 	}
 	
 	public Controller getController(String uri) {

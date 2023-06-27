@@ -704,5 +704,47 @@ section h2 .tit2{
     left: 760px;
     top: 150px;
 }
+section h4 .tit3{
+	display: inline-block;
+    font-family: 'Noto Sans KR';
+    font-weight: 600;
+    font-size: 30px;
+    color: #333;
+    font-style: normal;
+    line-height: 1.2;
+    position: absolute;
+    top: 250px;
+    left: 750px;
+}
 
 
+.container1{
+	
+	position: absolute;
+	top: 330px;
+	left: 280px;
+	display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+.accard {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.acc{
+	margin-bottom: 10px;
+}
+
+.acc1{
+	margin-right: 10px;	
+}
+
+.acc2{
+	margin-left: 10px;	
+}
