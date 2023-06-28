@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.ac.kopo.DAO.AccountDAO;
+import kr.ac.kopo.DAO.OpenBankingDAO;
 import kr.ac.kopo.VO.AccountVO;
 import kr.ac.kopo.VO.MemberVO;
 
@@ -33,11 +34,16 @@ public class AccountCheckController implements Controller {
 		dao.totalBalance(id);
 		List<AccountVO> accountList = dao.accountList(id);
 		
+		OpenBankingDAO opdao = new OpenBankingDAO();
+		opdao.accountList(id);
+		List<AccountVO> bbmAccountList = opdao.accountList(id);
+		
 	    NumberFormat currencyFormatKorea = NumberFormat.getInstance(Locale.KOREA);
 	    String formattedAmountKorea = currencyFormatKorea.format(dao.totalBalance(id));
 		
 		request.setAttribute("totalBalance", formattedAmountKorea);
 		request.setAttribute("accountList", accountList);
+		request.setAttribute("BBM", bbmAccountList);
 
 		return "/jsp/account/accountCheck.jsp";
 	}

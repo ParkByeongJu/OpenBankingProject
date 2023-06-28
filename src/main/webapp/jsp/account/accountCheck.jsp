@@ -117,7 +117,22 @@
 	        </form>
         </c:when>
         <c:otherwise>
-       		
+       		<c:forEach var = "bbm" items = "${ bbm }">
+				<div class="col">
+				    <div class="accard">
+				      <div class="card-body">
+					       <div class="text-center acc">
+					        <h3 class="card-title">${bbm.bankName}</h3>
+					        <hr>
+					        <p class="card-text">${bbm.productName} <br>${bbm.accountId }<br> <fmt:formatNumber value="${bbm.blance}" pattern="#,###" />원</p>
+					        <hr>
+					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc1">이체하기</a>
+					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
+					      </div>
+				      </div>
+			    </div>
+		    </div>
+		    </c:forEach>
         </c:otherwise>
         </c:choose>
 	</section>
