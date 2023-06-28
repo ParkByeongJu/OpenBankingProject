@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.ac.kopo.VO.ProductVO;
-import kr.ac.kopo.commom.JDBCUtil;
+import kr.ac.kopo.common.JDBCUtil;
 
 public class ProductDAO {
 	

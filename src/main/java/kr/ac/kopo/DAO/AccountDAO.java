@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.ac.kopo.VO.AccountVO;
-import kr.ac.kopo.commom.JDBCUtil;
+import kr.ac.kopo.common.JDBCUtil;
 
 public class AccountDAO {
 	
@@ -22,6 +22,8 @@ public class AccountDAO {
 									     + "JOIN BANK_INFO BK1 ON AC1.BANK_CD = BK1.BANK_CD "
 									     + "JOIN PRODUCT PD1 ON AC1.PRODUCT_CD = PD1.PRODUCT_CD "
 									     + "WHERE AC1.MEMBER_ID = ?";
+	private static String BBM_BANK_ACCOUNT = "SELECT * FROM B_ACCOUNT @BBMBANK WHERE USER_ID = ?";
+	
 	
 	public void insertAccount(AccountVO vo) {
 		
@@ -99,5 +101,36 @@ public class AccountDAO {
 		return accountList;
 	}
 
+//	public List<AccountVO> bbmAccountList(String id){
+//			
+//			List<AccountVO> accountList = new ArrayList<>();
+//			AccountVO account = null;
+//			
+//			
+//			try {
+//				
+//				conn = JDBCUtil.getConnnection();
+//				stmt = conn.prepareStatement(ACCOUNT_INFO);
+//				stmt.setString(1, id);
+//				rs = stmt.executeQuery();
+//				
+//				while (rs.next()) {
+//					account = new AccountVO();
+//					account.setBankName(rs.getString("BANK_NM"));
+//					account.setProductName(rs.getString("PRODUCT_NM"));
+//					account.setAccountId(rs.getLong("ACCOUNT_ID"));
+//					account.setBlance(rs.getLong("ACCOUNT_BL"));
+//					account.setAccountName(rs.getString("ACCOUNT_NM"));
+//					
+//					accountList.add(account);
+//				}
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				JDBCUtil.close(rs, stmt, conn);
+//			}
+//			return accountList;
+//		}
 	
 }

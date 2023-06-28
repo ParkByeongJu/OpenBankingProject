@@ -748,3 +748,16 @@ section h4 .tit3{
 .acc2{
 	margin-left: 10px;	
 }
+
+section .btn-customs2 {
+    width: 200px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #ffffff;
+    font-size: 20px;
+    margin-top: 200px; 
+    position: absolute;
+    top: 500px;
+    left: 850px;
+  }

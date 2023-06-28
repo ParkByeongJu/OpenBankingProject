@@ -25,7 +25,8 @@ public class HandlerMapping {
 		mappings.put("/ProductProcess.do", new ProductProcessController());
 		mappings.put("/createAccount.do", new CreateAccountController());
 		mappings.put("/accountCheck.do", new AccountCheckController());
-//		mappings.put("/accountCheckProcess.do", new AccountCheckProcessController());
+		mappings.put("/openBankingTerms.do", new OpenBankingTermsController());
+		mappings.put("/openBankingProcess.do", new OpenBankingProcessController());
 	}
 	
 	public Controller getController(String uri) {

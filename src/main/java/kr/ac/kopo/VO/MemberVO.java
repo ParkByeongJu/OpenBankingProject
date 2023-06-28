@@ -14,6 +14,7 @@ public class MemberVO {
 	private String fullAddr;
 	private String extraAddr;
 	private String role;
+	private String status;
 	
 
 	public String getId() {
@@ -75,6 +76,12 @@ public class MemberVO {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 	

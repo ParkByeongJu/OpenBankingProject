@@ -1,4 +1,4 @@
-package kr.ac.kopo.commom;
+package kr.ac.kopo.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

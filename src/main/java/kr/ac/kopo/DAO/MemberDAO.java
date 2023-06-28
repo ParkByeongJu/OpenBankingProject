@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
 import kr.ac.kopo.VO.MemberVO;
-import kr.ac.kopo.commom.JDBCUtil;
+import kr.ac.kopo.common.JDBCUtil;
 
 public class MemberDAO {
 	
@@ -17,7 +17,9 @@ public class MemberDAO {
 	
 	private static String DUPLICATE_CHECK_ID = "Select MEMBER_ID from member";
 	private static String LOGIN = "SELECT * FROM MEMBER where MEMBER_ID = ? AND PASSWO_PW = ?";
-	private static String INSERT_MEMBER = "INSERT INTO MEMBER (MEMBER_ID, PASSWO_PW, MEMBER_NM, MEMBER_EM, MEMBER_BIR, MEMBER_PH, MEMBER_POST, MEMBER_FULLADDR, MEMBER_EXTRAADDR, MEMBER_ROLE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'user')";
+	private static String INSERT_MEMBER = "INSERT INTO MEMBER (MEMBER_ID, PASSWO_PW, MEMBER_NM, MEMBER_EM, MEMBER_BIR, MEMBER_PH, MEMBER_POST, MEMBER_FULLADDR, MEMBER_EXTRAADDR, MEMBER_ROLE, OPENBANKING_STATUS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'user', 'N')";
+	private static String UPDATE_STATUS = "UPDATE MEMBER SET OPENBANKING_STATUS = 'Y' WHERE MEMBER_ID = ?";
+	
 	
 	public boolean duplicateCheckId(String id) {
 		String checkid = null;
@@ -68,6 +70,7 @@ public class MemberDAO {
 				user.setFullAddr(rs.getString("MEMBER_FULLADDR"));
 				user.setExtraAddr(rs.getString("MEMBER_EXTRAADDR"));
 				user.setRole(rs.getString("MEMBER_ROLE"));
+				user.setStatus(rs.getString("OPENBANKING_STATUS"));
 				}
 			
 			} catch (Exception e) {
@@ -102,6 +105,19 @@ public class MemberDAO {
 			JDBCUtil.close(stmt, conn);
 		}
 		
+	}
+	
+	public void updateStatus(MemberVO vo) {
+		try {
+			conn = JDBCUtil.getConnnection();
+			stmt = conn.prepareStatement(UPDATE_STATUS);
+			stmt.setString(1, vo.getId());
+			
+			stmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

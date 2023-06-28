@@ -109,6 +109,17 @@
 		    </div>
 		    </c:forEach>
         </div>
+        
+        <c:choose>
+        <c:when test="${loginUser.status eq 'N' }">
+	        <form action="/BjBanking/openBankingTerms.do" method="post">
+	        	<input type="submit" value="오픈뱅킹 사용하기" class="btn btn-customs2" id="signupButton">
+	        </form>
+        </c:when>
+        <c:otherwise>
+       		
+        </c:otherwise>
+        </c:choose>
 	</section>
 	
 	<footer id="footer" class="py-3 mt-auto bg-dark text-light">
