@@ -84,6 +84,7 @@
 		</div>
 	</header>
 	
+	<main class="flex-grow-1">
 	<section>
 		<h2>
 			<span class="tit">계좌 조회</span> 
@@ -101,7 +102,7 @@
 					        <hr>
 					        <p class="card-text">${account.productName} <br>${account.accountId }<br> <fmt:formatNumber value="${account.blance}" pattern="#,###" />원<br>${account.accountName}</p>
 					        <hr>
-					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc1">이체하기</a>
+					        <a href="/BjBanking/transfer.do?accountId=${ account.accountId }" class="btn btn-secondary acc1">이체하기</a>
 					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
 					      </div>
 				      </div>
@@ -110,6 +111,7 @@
 		    </c:forEach>
         </div>
         
+        
         <c:choose>
         <c:when test="${loginUser.status eq 'N' }">
 	        <form action="/BjBanking/openBankingTerms.do" method="post">
@@ -117,7 +119,8 @@
 	        </form>
         </c:when>
         <c:otherwise>
-       		<c:forEach var = "bbm" items = "${ bbm }">
+        <div class="container2">
+       		<c:forEach var = "bbm" items = "${ BBM }">
 				<div class="col">
 				    <div class="accard">
 				      <div class="card-body">
@@ -126,22 +129,40 @@
 					        <hr>
 					        <p class="card-text">${bbm.productName} <br>${bbm.accountId }<br> <fmt:formatNumber value="${bbm.blance}" pattern="#,###" />원</p>
 					        <hr>
-					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc1">이체하기</a>
+					        <a href="/BjBanking/transfer.do" class="btn btn-secondary acc1">이체하기</a>
 					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
 					      </div>
 				      </div>
 			    </div>
 		    </div>
 		    </c:forEach>
+		    </div>
         </c:otherwise>
         </c:choose>
 	</section>
+	</main>
 	
-	<footer id="footer" class="py-3 mt-auto bg-dark text-light">
-	  <div class="text-center p-3">
-	    &copy; 2023 BjBank. All rights reserved.
-	  </div>
-	</footer>
+	<footer id="footer" class="py-3 mt-auto bg-dark text-light" style="display: none;">
+    <div class="text-center p-3">
+      &copy; 2023 BjBank. All rights reserved.
+    </div>
+  </footer>
+  
+  <script>
+    window.addEventListener('scroll', function() {
+      var footer = document.getElementById('footer');
+      var section = document.querySelector('section');
+
+      var scrollY = window.scrollY || window.pageYOffset;
+      var sectionBottom = section.offsetTop + section.offsetHeight;
+
+      if (scrollY >= sectionBottom) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    });
+  </script>
 
 </body>
 </html>

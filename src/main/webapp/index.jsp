@@ -95,7 +95,7 @@
 					        <hr>
 					        <p class="card-text">신규 상품 및 고객님들에게 <br>많은 사랑을 받은 상품을 확인해보세요.</p>
 					        <hr>
-					        <a href="#" class="btn btn-secondary">상품 보러가기</a>
+					        <a href="/BjBanking/ProductProcess.do" class="btn btn-secondary">상품 보러가기</a>
 					      </div>
 				      </div>
 			    </div>
@@ -110,7 +110,8 @@
 					        <hr>
 					        <p class="card-text custom-bg"> 현재 고객님의<br>보유 중인 계좌를 확인해보세요.</p>
 					        <hr>
-					        <a href="#" class="btn btn-secondary">계좌 조회하기</a>
+					        
+					        <a href="/BjBanking/accountCheck.do" class="btn btn-secondary">계좌 조회하기</a>
 					      </div>
 				      </div>
 				    </div>
