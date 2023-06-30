@@ -12,6 +12,34 @@
 <title>BjBanking : InsertAccount</title>
 <link rel="stylesheet" href="/BjBanking/css/main.css">
 <link rel="stylesheet" href="/BjBanking/fontawesome/css/all.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		  $("#accountSelect").change(function() {
+		    getAccountOwnerName();
+		  });
+		});
+	
+	
+	function getAccountOwnerName() {
+		var selectedAccount = $("#accountSelect").val();
+		
+		if(selectedAccount) {
+			$.ajax({
+				url: '/BjBanking/checkAccountName.do',
+				type: 'post',
+				data: {selectedAccount: selectedAccount},
+				success: function (response) {
+					var accountOwnerName = response.accountOwnerName;
+					$("#accountOwnerName").text(accountOwnerName);
+				}
+			});
+		} else {
+			$("#accountOwnerName").empty();
+		}
+	}
+	
+</script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -85,15 +113,15 @@
 		</header>
 		
 		<section>
-		
+			<div id="accountOwnerName"></div>
 			<h2>
-				<span class="tit">계좌 이체</span> 
+				<span class="tit">계좌 이체[${loginUser.name}]</span>
 			</h2>
 			
 			<div class="form-container">
 			<form action="/BjBanking/transferProcess.do" method="post">
 				
-				<select class="form-select form-select-lg mb-3 form-select-custom" aria-label=".form-select-lg example" name="selectBankCode">
+				<select id="accountSelect" class="form-select form-select-lg mb-3 form-select-custom" aria-label=".form-select-lg example" name="selectBankCode" onchange="getAccountOwnerName()">
 					  <option selected>은행선택</option>
 					  <option value="0504">ezi은행</option>
 					  <option value="1003">BBM은행</option>
@@ -105,6 +133,8 @@
 					<input type="text" id="reciverAccountId" name="reciverAccountId" placeholder="계좌번호를 입력해주세요" class="ac-border-type98">
 				</div>
 				<input type="hidden" class="form-control " name="senderAccountId" value = "${param.accountId }">
+				<input type="hidden" class="form-control " name="bankId" value = "${bankCode }">
+				<input type="hidden" class="form-control " name="senderName" value = "${loginUser.name}">
 				<div>
 					<input type="text" id="amount" name="amount" placeholder="송금할 금액을 입력해주세요" class="ac-border-type99">
 				</div>

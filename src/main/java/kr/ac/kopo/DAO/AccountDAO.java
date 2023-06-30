@@ -17,7 +17,7 @@ public class AccountDAO {
 	
 	private static String INSERT_ACCOUNT = "INSERT INTO ACCOUNT(ACCOUNT_ID, BANK_CD, ACCOUNT_BL, ACCOUNT_DATE, ACCOUNT_PW, MEMBER_ID, PRODUCT_CD, PW_CNT, DORMANT_ACC, ACCOUNT_NM) VALUES (TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(account_id_seq.NEXTVAL, 4, '0'), '0413', '0', TO_CHAR(SYSDATE, 'YYYYMMDD'), ?, ?, ?, '0', '0', ?)";
 	private static String TOTAL_BALANCE = "SELECT SUM(bj1.ACCOUNT_BL + my1.BALANCE) AS TOTAL_BALANCE FROM ACCOUNT bj1 JOIN B_ACCOUNT @BBMBank my1 on bj1.member_id = my1.user_id WHERE bj1.MEMBER_ID = ?";
-	private static String ACCOUNT_INFO = "SELECT BK1.BANK_NM AS BANK_NM, PD1.PRODUCT_NM AS PRODUCT_NM, AC1.ACCOUNT_ID AS ACCOUNT_ID, AC1.ACCOUNT_BL AS ACCOUNT_BL, AC1.ACCOUNT_NM AS ACCOUNT_NM "
+	private static String ACCOUNT_INFO = "SELECT BK1.BANK_NM AS BANK_NM, PD1.PRODUCT_NM AS PRODUCT_NM, AC1.ACCOUNT_ID AS ACCOUNT_ID, AC1.ACCOUNT_BL AS ACCOUNT_BL, AC1.ACCOUNT_NM AS ACCOUNT_NM, bk1.bank_cd as BANK_CD "
 									     + "FROM ACCOUNT AC1 "
 									     + "JOIN BANK_INFO BK1 ON AC1.BANK_CD = BK1.BANK_CD "
 									     + "JOIN PRODUCT PD1 ON AC1.PRODUCT_CD = PD1.PRODUCT_CD "
@@ -88,6 +88,8 @@ public class AccountDAO {
 				account.setAccountId(rs.getLong("ACCOUNT_ID"));
 				account.setBlance(rs.getLong("ACCOUNT_BL"));
 				account.setAccountName(rs.getString("ACCOUNT_NM"));
+				account.setAccountName(rs.getString("ACCOUNT_NM"));
+				account.setBankId(rs.getString("BANK_CD"));
 				
 				accountList.add(account);
 			}

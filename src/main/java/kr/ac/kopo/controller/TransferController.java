@@ -9,9 +9,12 @@ public class TransferController implements Controller {
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 
 		String accountId = request.getParameter("accountId");
+		String bankCode = request.getParameter("bankId");
 		
 		request.setAttribute("accountId", accountId);
+		request.setAttribute("bankCode", bankCode);
 		System.out.println(accountId);
+		System.out.println(bankCode);
 		
 		return "/jsp/transfer/transfer.jsp";
 	}

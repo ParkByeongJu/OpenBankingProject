@@ -100,9 +100,10 @@
 					       <div class="text-center acc">
 					        <h3 class="card-title">${account.bankName}</h3>
 					        <hr>
-					        <p class="card-text">${account.productName} <br>${account.accountId }<br> <fmt:formatNumber value="${account.blance}" pattern="#,###" />원<br>${account.accountName}</p>
+					        <p class="card-text">${account.productName} <br>${account.accountId }<br> <fmt:formatNumber value="${account.blance}" pattern="#,###" />원<br>${account.accountName}<br>${account.bankId}</p>
 					        <hr>
-					        <a href="/BjBanking/transfer.do?accountId=${ account.accountId }" class="btn btn-secondary acc1">이체하기</a>
+					        <input type="hidden" class="form-control " name="bankId" value = "${account.bankId}">
+					        <a href="/BjBanking/transfer.do?accountId=${ account.accountId }&bankId=${account.bankId}" class="btn btn-secondary acc1">이체하기</a>
 					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
 					      </div>
 				      </div>

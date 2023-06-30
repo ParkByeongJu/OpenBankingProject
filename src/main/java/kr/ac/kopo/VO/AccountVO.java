@@ -5,7 +5,7 @@ import java.sql.Date;
 public class AccountVO {
 	
 	private long accountId;
-	private int bankId;
+	private String bankId;
 	private long blance;
 	private Date accountDate;
 	private int accountPassword;
@@ -24,10 +24,10 @@ public class AccountVO {
 	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 	}
-	public int getBankId() {
+	public String getBankId() {
 		return bankId;
 	}
-	public void setBankId(int bankId) {
+	public void setBankId(String bankId) {
 		this.bankId = bankId;
 	}
 	public long getBlance() {

@@ -6,12 +6,12 @@ public class HistoryVO {
 	
 	private int bankNo;//시퀀스 자동 생성 번호
 	private String bankCode;//은행코드
-	private int accountId;//계좌 번호
-	private Date historyDate;//입출금 날짜
+	private String accountId;//계좌 번호
+	private Date historyDate;//입출금 날짜, 디폴트 입력
 	private String srHistory;//입출금 내역
 	private String transferBank;//받는 은행
-	private int transferAccount;//거래 계좌
-	private int balance;//거래후 잔액
+	private String transferAccount;//거래 계좌
+	private Long balance;//보낸 금액
 	public int getBankNo() {
 		return bankNo;
 	}
@@ -24,10 +24,10 @@ public class HistoryVO {
 	public void setBankCode(String bankCode) {
 		this.bankCode = bankCode;
 	}
-	public int getAccountId() {
+	public String getAccountId() {
 		return accountId;
 	}
-	public void setAccountId(int accountId) {
+	public void setAccountId(String accountId) {
 		this.accountId = accountId;
 	}
 	public Date getHistoryDate() {
@@ -49,16 +49,16 @@ public class HistoryVO {
 	public void setTransferBank(String transferBank) {
 		this.transferBank = transferBank;
 	}
-	public int getTransferAccount() {
+	public String getTransferAccount() {
 		return transferAccount;
 	}
-	public void setTransferAccount(int transferAccount) {
+	public void setTransferAccount(String transferAccount) {
 		this.transferAccount = transferAccount;
 	}
-	public int getBalance() {
+	public Long getBalance() {
 		return balance;
 	}
-	public void setBalance(int balance) {
+	public void setBalance(Long balance) {
 		this.balance = balance;
 	}
 	
