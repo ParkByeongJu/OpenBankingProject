@@ -35,8 +35,12 @@ public class AccountCheckController implements Controller {
 		List<AccountVO> accountList = dao.accountList(id);
 		
 		OpenBankingDAO opdao = new OpenBankingDAO();
-		opdao.accountList(id);
-		List<AccountVO> bbmAccountList = opdao.accountList(id);
+		opdao.bbmAccountList(id);
+		opdao.kkpAccountList(id);
+		opdao.eziAccountList(id);
+		List<AccountVO> bbmAccountList = opdao.bbmAccountList(id);
+		List<AccountVO> kkpAccountList = opdao.kkpAccountList(id);
+		List<AccountVO> eziAccountList = opdao.eziAccountList(id);
 		
 	    NumberFormat currencyFormatKorea = NumberFormat.getInstance(Locale.KOREA);
 	    String formattedAmountKorea = currencyFormatKorea.format(dao.totalBalance(id));
@@ -44,6 +48,8 @@ public class AccountCheckController implements Controller {
 		request.setAttribute("totalBalance", formattedAmountKorea);
 		request.setAttribute("accountList", accountList);
 		request.setAttribute("BBM", bbmAccountList);
+		request.setAttribute("KKP", kkpAccountList);
+		request.setAttribute("EZI", eziAccountList);
 
 		return "/jsp/account/accountCheck.jsp";
 	}

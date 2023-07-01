@@ -128,9 +128,48 @@
 					       <div class="text-center acc">
 					        <h3 class="card-title">${bbm.bankName}</h3>
 					        <hr>
-					        <p class="card-text">${bbm.productName} <br>${bbm.accountId }<br> <fmt:formatNumber value="${bbm.blance}" pattern="#,###" />원</p>
+					        <p class="card-text">${bbm.productName} <br>${bbm.accountId }<br> <fmt:formatNumber value="${bbm.blance}" pattern="#,###" />원<br>${bbm.bankId}</p>
 					        <hr>
-					        <a href="/BjBanking/transfer.do" class="btn btn-secondary acc1">이체하기</a>
+					        <input type="hidden" class="form-control " name="bankId" value = "${bbm.bankId}">
+					        <a href="/BjBanking/transfer.do?accountId=${ bbm.accountId }&bankId=${bbm.bankId}" class="btn btn-secondary acc1">이체하기</a>
+					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
+					      </div>
+				      </div>
+			    </div>
+		    </div>
+		    </c:forEach>
+		    </div>
+		    <div class="container3">
+       		<c:forEach var = "kkp" items = "${ KKP }">
+				<div class="col">
+				    <div class="accard">
+				      <div class="card-body">
+					       <div class="text-center acc">
+					        <h3 class="card-title">${kkp.bankName}</h3>
+					        <hr>
+					        <p class="card-text">${kkp.productName} <br>${kkp.accountId }<br> <fmt:formatNumber value="${kkp.blance}" pattern="#,###" />원<br>${kkp.bankId}</p>
+					        <hr>
+					        <input type="hidden" class="form-control " name="bankId" value = "${kkp.bankId}">
+					        <a href="/BjBanking/transfer.do?accountId=${ kkp.accountId }&bankId=${kkp.bankId}" class="btn btn-secondary acc1">이체하기</a>
+					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
+					      </div>
+				      </div>
+			    </div>
+		    </div>
+		    </c:forEach>
+		    </div>
+		    <div class="container4">
+       		<c:forEach var = "ezi" items = "${ EZI }">
+				<div class="col">
+				    <div class="accard">
+				      <div class="card-body">
+					       <div class="text-center acc">
+					        <h3 class="card-title">${ezi.bankName}</h3>
+					        <hr>
+					        <p class="card-text">${ezi.productName} <br>${ezi.accountId }<br> <fmt:formatNumber value="${ezi.blance}" pattern="#,###" />원<br>${ezi.bankId}</p>
+					        <hr>
+					        <input type="hidden" class="form-control " name="bankId" value = "${kkp.bankId}">
+					        <a href="/BjBanking/transfer.do?accountId=${ kkp.accountId }&bankId=${kkp.bankId}" class="btn btn-secondary acc1">이체하기</a>
 					        <a href="/BjBanking/createAccount.do" class="btn btn-secondary acc2">상세조회하기</a>
 					      </div>
 				      </div>

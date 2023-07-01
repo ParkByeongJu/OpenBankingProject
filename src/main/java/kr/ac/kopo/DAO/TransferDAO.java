@@ -4,8 +4,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.Types;
 
+import kr.ac.kopo.VO.HistoryVO;
 import kr.ac.kopo.common.JDBCUtil;
 
 public class TransferDAO {
@@ -15,39 +16,31 @@ public class TransferDAO {
 	private ResultSet rs;
 	private CallableStatement cstmt;
 	
-	private static String TRANSFERBJ = "{call transferJY(?, ?, ?)}";
+	private static String TRANSFER_BANK = "{call TRANSFER_BANK(?, ?, ?, ?, ?, ?, ?, ?)}";
 	
-	
-
-	
-	public int transferBJ(String senderAccountId, String reciverAccountId, long amount) throws SQLException {
-		
+	public int transfer(HistoryVO vo) {
+		int result = 0;
 		try {
-			
 			conn = JDBCUtil.getConnnection();
-			conn.setAutoCommit(false);
-			cstmt = conn.prepareCall(TRANSFERBJ);
+			cstmt = conn.prepareCall(TRANSFER_BANK);
+			cstmt.setString(1, vo.getAccountId());
+			cstmt.setString(2, vo.getBankCode());
+			cstmt.setString(3, vo.getSenderName());
+			cstmt.setString(4, vo.getTransferAccount());
+			cstmt.setString(5, vo.getTransferBank());
+			cstmt.setString(6, vo.getReciverName());
+			cstmt.setLong(7, vo.getBalance());
+			cstmt.registerOutParameter(8, Types.INTEGER);
+			cstmt.execute();
 			
-			cstmt.setString(1, senderAccountId);
-			cstmt.setString(2, reciverAccountId);
-			cstmt.setLong(3, amount);
-			
-			cstmt.executeUpdate();
-			conn.commit();
-			
-			return 1;
-			
-		} catch (SQLException e) {
-			conn.rollback();
-			return 0;
-		} finally {
-			if (cstmt != null) {
-				cstmt.close();
-			}
-			if(conn != null) {
-				conn.close();
-			}
+			result = cstmt.getInt(8);
+			cstmt.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCUtil.close(stmt, conn);
 		}
+		return result;
 	}
 	
 	

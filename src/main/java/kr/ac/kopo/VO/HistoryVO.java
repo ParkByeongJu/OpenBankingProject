@@ -5,13 +5,15 @@ import java.sql.Date;
 public class HistoryVO {
 	
 	private int bankNo;//시퀀스 자동 생성 번호
-	private String bankCode;//은행코드
-	private String accountId;//계좌 번호
+	private String bankCode;//보내는 은행 코드
+	private String accountId;//보내는 계좌 번호
 	private Date historyDate;//입출금 날짜, 디폴트 입력
 	private String srHistory;//입출금 내역
-	private String transferBank;//받는 은행
-	private String transferAccount;//거래 계좌
-	private Long balance;//보낸 금액
+	private String transferBank;//받는 은행 코드
+	private String transferAccount;//받는 은행 계좌
+	private Long balance;//이체 금액
+	private String senderName; //보내는 이름
+	private String reciverName;//받는 이름
 	public int getBankNo() {
 		return bankNo;
 	}
@@ -60,6 +62,18 @@ public class HistoryVO {
 	}
 	public void setBalance(Long balance) {
 		this.balance = balance;
+	}
+	public String getSenderName() {
+		return senderName;
+	}
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
+	}
+	public String getReciverName() {
+		return reciverName;
+	}
+	public void setReciverName(String reciverName) {
+		this.reciverName = reciverName;
 	}
 	
 	

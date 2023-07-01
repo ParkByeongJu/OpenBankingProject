@@ -12,32 +12,30 @@
 <title>BjBanking : InsertAccount</title>
 <link rel="stylesheet" href="/BjBanking/css/main.css">
 <link rel="stylesheet" href="/BjBanking/fontawesome/css/all.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		  $("#accountSelect").change(function() {
-		    getAccountOwnerName();
-		  });
-		});
-	
-	
 	function getAccountOwnerName() {
-		var selectedAccount = $("#accountSelect").val();
-		
-		if(selectedAccount) {
+		var bank_cd = $("#bank_cd").val();
+		var account_id = $("#reciverAccountId").val();
 			$.ajax({
 				url: '/BjBanking/checkAccountName.do',
-				type: 'post',
-				data: {selectedAccount: selectedAccount},
+				type: 'POST',
+				data: {bank_cd: bank_cd, reciverAccountId: account_id},
 				success: function (response) {
-					var accountOwnerName = response.accountOwnerName;
-					$("#accountOwnerName").text(accountOwnerName);
+					console.log(response);
+					if(response.trim()===""){
+					$("#to_nm").text('');
+					$("#to_nm").val('');
+					}else{
+					$("#to_nm").text(response);
+					$("#to_nm").val(response);
+					}
+				},
+				error: function(){
+					$("#to_nm").text("계좌 확인 중 오류가 발생했습니다.");	
 				}
 			});
-		} else {
-			$("#accountOwnerName").empty();
 		}
-	}
 	
 </script>
 </head>
@@ -113,7 +111,6 @@
 		</header>
 		
 		<section>
-			<div id="accountOwnerName"></div>
 			<h2>
 				<span class="tit">계좌 이체[${loginUser.name}]</span>
 			</h2>
@@ -121,7 +118,8 @@
 			<div class="form-container">
 			<form action="/BjBanking/transferProcess.do" method="post">
 				
-				<select id="accountSelect" class="form-select form-select-lg mb-3 form-select-custom" aria-label=".form-select-lg example" name="selectBankCode" onchange="getAccountOwnerName()">
+				<select id="bank_cd" class="form-select form-select-lg mb-3 form-select-custom" aria-label=".form-select-lg example" name="selectBankCode" onchange="getAccountOwnerName()">
+					  <!-- 받는 은행코드 --> 
 					  <option selected>은행선택</option>
 					  <option value="0504">ezi은행</option>
 					  <option value="1003">BBM은행</option>
@@ -130,12 +128,19 @@
 				</select>
 				
 				<div>
-					<input type="text" id="reciverAccountId" name="reciverAccountId" placeholder="계좌번호를 입력해주세요" class="ac-border-type98">
+					<!-- 받는 계좌번호 -->
+					<input type="text" onkeyup="getAccountOwnerName()" id="reciverAccountId" name="reciverAccountId" placeholder="계좌번호를 입력해주세요" class="ac-border-type98">
 				</div>
+				<!-- 보내는 계좌번호 -->
 				<input type="hidden" class="form-control " name="senderAccountId" value = "${param.accountId }">
+				<!-- 보내는 은행코드 -->
 				<input type="hidden" class="form-control " name="bankId" value = "${bankCode }">
+				<!-- 보내는 이름 -->
 				<input type="hidden" class="form-control " name="senderName" value = "${loginUser.name}">
+				<!-- 받는 이름 -->
+				<input type="hidden" class="form-control " id="to_nm" name="reciverName">
 				<div>
+				<!-- 이체 금액 -->
 					<input type="text" id="amount" name="amount" placeholder="송금할 금액을 입력해주세요" class="ac-border-type99">
 				</div>
 				<div>

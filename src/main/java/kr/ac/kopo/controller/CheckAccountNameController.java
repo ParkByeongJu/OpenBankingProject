@@ -4,26 +4,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.ac.kopo.DAO.CheckAccountOwnerDAO;
-import kr.ac.kopo.VO.TransferVO;
 
 public class CheckAccountNameController implements Controller {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) {
 
-		String selectBankCode = request.getParameter("selectBankCode");//받는 은행 코드
-		String reciverAccountId = request.getParameter("reciverAccountId");//받는 계좌
-		TransferVO vo = new TransferVO();
+		String bank_cd = request.getParameter("bank_cd");//받는 은행 코드
+		String account_id = request.getParameter("reciverAccountId");//받는 계좌
 		
-		vo.setRecieverAccountId(reciverAccountId);
+		System.out.println(bank_cd);
+		System.out.println(account_id);
 		
-		CheckAccountOwnerDAO dao = new CheckAccountOwnerDAO();
-		 
-		String name =  dao.bankSelect(selectBankCode, reciverAccountId);
+		String result = new CheckAccountOwnerDAO().checkAccount(account_id, bank_cd);
 		
-		request.setAttribute("receiverName", name);
+		System.out.println("나오긴함?" + result);
+		request.setAttribute("result", result);
 		
-		return "/jsp/tranfer/transfer.jsp";
+		return "/jsp/account/ajax.jsp";
 	}
 
 }
